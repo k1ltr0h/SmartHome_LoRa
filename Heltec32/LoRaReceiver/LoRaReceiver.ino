@@ -6,7 +6,7 @@
 #define BAND    915E6  //you can set band here directly,e.g. 868E6,915E6
 
 const char* ssid = "VTR-1498496";
-const char* password = "bxm3ynbjHsPm";
+const char* password = "***";
 String serverName = "http://192.168.0.100:8080/data/update";
 unsigned long lastTime = 0;
 unsigned long timerDelay = 10000;
