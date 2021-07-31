@@ -8,4 +8,4 @@ Project for Smart Grids course.
 
 Read the document [Doc](./LoRa based communication for Smart Home IoT implementation.pdf)
 
-![system](./imgs/sistema.png)
+![system](./imgs/Sistema.png)
