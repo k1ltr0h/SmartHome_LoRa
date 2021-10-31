@@ -32,11 +32,12 @@ router.get("/", async function(req, res){
 
 router.post("/add", async function(req, res){
 
-    console.log(req.body.name, req.body.area);
+    console.log(req.body.name, req.body.area, req.body.state);
 
     await lights.create({ 
         name: req.body.name,
-        area: req.body.area 
+        area: req.body.area,
+        state: req.body.state
         })
         .then(us => { 
             console.log("Luz agregada de forma exitosa.");
