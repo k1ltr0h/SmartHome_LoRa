@@ -1,11 +1,13 @@
 # LoRa based communication for Smart Home IoT implementation
-## [IPD446] Smart Grids
+## [TEL329] Redes de sensores
 ### Description
 
-Project for Smart Grids course.
+Proyecto destinado a diseñar e implementar una SmartHome.
 
 ### Details
 
-Read the document [Doc](./LoRa based communication for Smart Home IoT implementation.pdf)
+* Backend: Node.js - Express.js
+* FrontEnd: React.js
+* BD: MySQL
 
-![system](./imgs/Sistema.png)
+![system](./imgs/diseño_v1.png)
