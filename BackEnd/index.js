@@ -32,6 +32,7 @@ const sequelize = new Sequelize(
 
 app.all("*",cors(corsOptions));
 app.use(express.json())
+app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use('/data/lights', lights);
 
