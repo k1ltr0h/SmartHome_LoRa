@@ -3,6 +3,7 @@ const app = express();
 const cors = require("cors");
 var config = require('./config.json');  
 var lights = require('./routes/lights.js');
+var rooms = require('./routes/rooms.js');
 const Sequelize = require('sequelize');
 //const functions = require('firebase-functions');
 //develop&testing
@@ -35,6 +36,7 @@ app.use(express.json())
 app.use(cors())
 app.use(express.urlencoded({extended: true}))
 app.use('/data/lights', lights);
+app.use('/data/rooms', rooms);
 
 //exports.app = functions.https.onRequest(app);
 

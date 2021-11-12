@@ -1,7 +1,7 @@
 "use strict";
 var express = require('express');
 var router= express.Router();
-var lights = require('../models/lights');
+var lights = require('../models/house');
 
 module.exports = router;
 
@@ -55,20 +55,3 @@ router.post("/add", async function(req, res){
         }
     );
 });
-
-/*
-router.post("/update", function(req, res){
-    //console.log(req.body);
-    var data = req.body.data.split("\n")
-    data.shift()
-    console.log(data)
-    var param = []
-    for(var i = 0; data.length > i; i++){
-        param.push(data[i].split(":"))
-    }
-    //console.log(param)
-    temp = param[0][1]
-    humd = param[1][1]
-    //console.log(param[0][1])
-    res.sendStatus(200);
-});*/
