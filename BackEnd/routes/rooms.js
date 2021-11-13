@@ -8,54 +8,51 @@ module.exports = router;
 router.post("/add", async function(req, res){
     console.log(req.body);
 
-    await lights.create({ 
-        name: req.body.lights.name,
-        room_name: req.body.lights.room_name,
-        state: req.body.lights.state
-        }).then(async () =>{
-            await rooms.create({ 
-                name: req.body.name,
-                lights_name: req.body.lights.name,
-                temp: req.body.temp,
-                humd: req.body.humd
-            })
-            .then(() =>{
-                console.log("Habitación agregada correctamente.\n")
-            })
-            //.catch(() =>{
-            //    console.log("No se ha podido agregar la habitación u.u\n")
-            //})
-        })
-    res.sendStatus(200);
+    await rooms.create({ 
+        name: req.body.name,
+        temp: req.body.temp,
+        humd: req.body.humd
+    })
+    .then(() =>{
+        console.log("Habitación agregada correctamente.\n")
+        res.json({
+            type: true,
+            data: "Habitación registrada exitosamente."
+        });
+    })
+    .catch((err) =>{
+        console.log("No se ha podido agregar la habitación.\n" + err)
+        res.json({
+            type: false,
+            data: "habitación registrada exitosamente."
+        });
+    })
 });
 
-router.post("/update", async function(req, res){
+router.put("/update", async function(req, res){
 
     console.log(req.body);
 
     var new_data = req.body
     
-    await rooms.findOne({ where: {name: req.body} })
-        .then(function(obj) {
+    await rooms.findOne({ where: {name: req.body.name} })
+        .then(async function(obj) {
             // update
-            if(obj)
-                return obj.update(values);
-            // insert
-            return Model.create(values);
-        }).catch(() =>{
-            console.log("No se ha encontrado esa habitación. u.u\n");
-        }).then(async ()=>{
-            await rooms.create({ 
-                name: req.body.name,
-                lights_name: req.body.lights,
+            console.log(obj)
+            await obj.update({
                 temp: req.body.temp,
                 humd: req.body.humd
-            }).then(us => { 
-                console.log("Habitación agregada de forma exitosa.");
-                res.json({
-                    type: true,
-                    data: "Habitación registrada exitosamente ;D."
-                });
+            });
+            console.log("Datos de la habitación actualizados.\n");
+            res.json({
+                type: true,
+                data: "Datos actualizados."
+            })
+        }).catch(() =>{
+            console.log("No se ha encontrado esa habitación.\n");
+            res.json({
+                type: false,
+                data: "Error al actualizar los datos."
             })
         })
 
@@ -73,5 +70,4 @@ router.post("/update", async function(req, res){
     humd = param[1][1]
     //console.log(param[0][1])
     */
-    res.sendStatus(200);
 });

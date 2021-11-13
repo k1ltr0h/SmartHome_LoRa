@@ -27,8 +27,8 @@ const lights = sequelize.define('lights', {
     { timestamps: false })
 
 const rooms = sequelize.define('rooms', {
-    id: {type:Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
-    name: {type: Sequelize.STRING, allowNull: false},
+    id: {type:Sequelize.INTEGER, autoIncrement: true},
+    name: {type: Sequelize.STRING, allowNull: false, primaryKey: true},
     temp: {type:Sequelize.INTEGER, allowNull: true},
     humd: {type:Sequelize.INTEGER, allowNull: true}},
     { timestamps: false })
