@@ -20,9 +20,9 @@ const sequelize = new Sequelize(
 ); 
 
 const lights = sequelize.define('lights', {
-    id: {type:Sequelize.INTEGER, autoIncrement: true, primaryKey: true},
+    id: {type:Sequelize.INTEGER, autoIncrement: true},
     state: {type:Sequelize.BOOLEAN, allowNull: true},
-    name: {type: Sequelize.STRING, allowNull: true},
+    name: {type: Sequelize.STRING, allowNull: true, primaryKey: true},
     room_name: {type:Sequelize.STRING, allowNull: true}},
     { timestamps: false })
 

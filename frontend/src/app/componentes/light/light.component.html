@@ -1,0 +1,24 @@
+<div class="container">
+  <div class="row">
+    <div class="col s15">
+     <div class="card">
+      <table class="striped highlight black-text">
+        <thead>
+          <th>Id</th>
+          <th>Estado</th>
+          <th>Nombre</th>
+          <th>Cuarto</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let light of lightService.lights">
+            <td>{{ light.id}}</td>
+            <td>{{ light.state}}</td>
+            <td>{{ light.name}}</td>
+            <td>{{ light.room_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+     </div>
+    </div>
+  </div>
+</div>
