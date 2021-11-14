@@ -21,11 +21,10 @@ router.get("/", async function(req, res){
     })
     .catch(err =>{
         console.log(err);
-        console.log("No exite este objeto >:c");
+        console.log("No exite este objeto.");
         res.json({
             type: false,
-            data: "No existe este objeto.",
-            id: 0
+            data: "No existe este objeto."
         })
     })
 });
@@ -50,7 +49,7 @@ router.post("/add", async function(req, res){
             console.log(error);
             res.json({
                 type: false,
-                data: "Error, no se a podido registrar la habitación."
+                data: "Error, no se a podido registrar la luz."
             });
         }
     );

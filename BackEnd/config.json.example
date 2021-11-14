@@ -1,0 +1,7 @@
+{"dev": {  
+    "driver": "mysql",  
+    "user": "developer",  
+    "database": "sensores",  
+    "password": "123"   
+    }
+}
