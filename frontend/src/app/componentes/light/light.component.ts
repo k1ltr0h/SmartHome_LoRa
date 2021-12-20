@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Light} from '../../modelos/light'
 import { LightService} from '../../servicios/light/light.service';
+import { NgForm } from "@angular/forms";
+import {CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-light',
@@ -18,9 +20,14 @@ export class LightComponent implements OnInit {
 
   getLights(){
     this.lightService.getLight()
-      .subscribe(res => {
-        console.log(res);
-        this.lightService.lights = res as Light[];
-      });
+      .subscribe((res) => {
+      this.lightService.lights = res as Light[];
+      console.log(res);
+    });
+    
+  }
+
+  editEmployee(light: Light) {
+    this.lightService.selectedLight = light;
   }
 }

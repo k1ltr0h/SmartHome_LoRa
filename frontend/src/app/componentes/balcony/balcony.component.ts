@@ -2,12 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
 @Component({
-  selector: 'app-map',
-  templateUrl: './map.component.html',
-  styleUrls: ['./map.component.css']
+  selector: 'app-balcony',
+  templateUrl: './balcony.component.html',
+  styleUrls: ['./balcony.component.css']
 })
-export class MapComponent implements OnInit {
-  
+export class BalconyComponent implements OnInit {
+
   constructor(
     private router: Router
   ) { }

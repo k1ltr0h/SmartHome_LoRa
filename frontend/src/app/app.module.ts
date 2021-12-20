@@ -9,11 +9,17 @@ import { HomeComponent } from './componentes/home/home.component';
 import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { LightComponent } from './componentes/light/light.component';
 import { MapComponent } from './componentes/map/map.component';
-
+import { BalconyComponent } from './componentes/balcony/balcony.component';
+import { LivingComponent } from './componentes/living/living.component';
+import { RoomaComponent } from './componentes/rooma/rooma.component';
+import {CommonModule } from '@angular/common';
 const appRoutes: Routes =  [
   {path: '', component: HomeComponent},
   {path: 'lights', component: LightComponent},
-  {path: 'map', component: MapComponent}
+  {path: 'rooms', component: MapComponent},
+  {path: 'rooms/balcony', component: BalconyComponent},
+  {path: 'rooms/room_a', component: RoomaComponent},
+  {path: 'rooms/living', component: LivingComponent},
 ]
 
 @NgModule({
@@ -23,12 +29,16 @@ const appRoutes: Routes =  [
     NavbarComponent,
     LightComponent,
     MapComponent,
+    BalconyComponent,
+    LivingComponent,
+    RoomaComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
+    CommonModule,
     RouterModule.forRoot(appRoutes)
   ],
   
