@@ -8,25 +8,72 @@ module.exports = router;
 //var temp = 20;
 //var humd = 15;
 
+//example: localhost:8080/data/lights?room_name=Balcón&name=Led_puerta --> Led_puerta de Balcón.
+//example: localhost:8080/data/lights?room_name=Balcón --> todas las luces de Balcón.
+//example: localhost:8080/data/lights --> todas las luces.
+
 router.get("/", async function(req, res){
     //res.send('<html><body><h1>Hello, World!</h1></body></html>');
-    await lights.findAll({
-        
-    }).then(us =>{
-            res.json({
-                type: true,
-                data: us
-            })
-            console.log("Data obtenida correctamente.");
-    })
-    .catch(err =>{
-        console.log(err);
-        console.log("No exite este objeto.");
-        res.json({
-            type: false,
-            data: "No existe este objeto."
+
+    if(req.query.name != null && req.query.room_name != null){
+        console.log(req.query.name, req.query.room_name)
+        await lights.findOne({
+            where: {name: req.query.name, room_name: req.query.room_name}
+        }).then(us =>{
+                res.json({
+                    type: true,
+                    data: us
+                })
+                console.log("Data obtenida correctamente.");
         })
-    })
+        .catch(err =>{
+            console.log(err);
+            console.log("No exite este objeto.");
+            res.json({
+                type: false,
+                data: "No existe este objeto."
+            })
+        })
+    }
+    else if(req.query.room_name != null){
+        console.log(req.query.name)
+        await lights.findAll({
+            where: {room_name: req.query.room_name}
+        }).then(us =>{
+                res.json({
+                    type: true,
+                    data: us
+                })
+                console.log("Data obtenida correctamente.");
+        })
+        .catch(err =>{
+            console.log(err);
+            console.log("No exite este objeto.");
+            res.json({
+                type: false,
+                data: "No existe este objeto."
+            })
+        })
+    }
+    else{
+        await lights.findAll({
+        
+        }).then(us =>{
+                res.json({
+                    type: true,
+                    data: us
+                })
+                console.log("Data obtenida correctamente.");
+        })
+        .catch(err =>{
+            console.log(err);
+            console.log("No exite este objeto.");
+            res.json({
+                type: false,
+                data: "No existe este objeto."
+            })
+        })
+    }
 });
 
 router.post("/add", async function(req, res){
