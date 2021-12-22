@@ -13,6 +13,9 @@ import { BalconyComponent } from './componentes/balcony/balcony.component';
 import { LivingComponent } from './componentes/living/living.component';
 import { RoomaComponent } from './componentes/rooma/rooma.component';
 import {CommonModule } from '@angular/common';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpErrorInterceptor } from './interceptors/HttpErrorInterceptor';
+
 const appRoutes: Routes =  [
   {path: '', component: HomeComponent},
   {path: 'lights', component: LightComponent},
@@ -42,7 +45,13 @@ const appRoutes: Routes =  [
     RouterModule.forRoot(appRoutes)
   ],
   
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+    useClass: HttpErrorInterceptor,
+    multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

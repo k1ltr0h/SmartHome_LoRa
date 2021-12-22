@@ -1,9 +1,52 @@
 <div class="container">
   <div class="card">
-    <h4>Room A lights status</h4>
+    <h4>Room A components status</h4>
     <br>
   </div>
   <div class="row">
     <li class="btn" [routerLinkActive]="['active']"><a [routerLink]="['/rooms']">Back to Home Map</a></li>
+  </div>
+</div>
+
+<div class="container">
+  <div class="row">
+    <div class="col s15">
+     <div class="card">
+      <table class="striped highlight black-text">
+        <thead>
+          <th>Id</th>
+          <th>Status</th>
+          <th>Name</th>
+          <th>Room</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let _light of light">
+            <td>{{ _light.id}}</td>
+            <td>{{ _light.state}}</td>
+            <td>{{ _light.name}}</td>
+            <td>{{ _light.room_name}}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="card">
+      <table class="striped highlight black-text">
+        <thead>
+          <th>Id</th>
+          <th>Name</th>
+          <th>Temperature</th>
+          <th>Humidity</th>
+        </thead>
+        <tbody>
+          <tr *ngFor="let _room of room">
+            <td>{{ _room.id}}</td>
+            <td>{{ _room.name}}</td>
+            <td>{{ _room.temp}}</td>
+            <td>{{ _room.hum}}</td>
+          </tr>
+        </tbody>
+      </table>
+     </div>
+    </div>
   </div>
 </div>
