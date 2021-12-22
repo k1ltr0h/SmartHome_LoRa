@@ -14,7 +14,7 @@ export class RoomaComponent implements OnInit {
   constructor(private lightService:LightService, private router: Router) {}
   strng = 'room_a';
   light: Light[] = [];
-  room: Room[] = [];
+  room: Room;
   postdata: Light;
   
   ngOnInit() {
@@ -33,10 +33,7 @@ export class RoomaComponent implements OnInit {
   getData(){
     this.lightService.getRoomData(this.strng)
       .subscribe(resp => {
-        for (const data of resp.body.data) {
-         this.room.push(data);
-         console.log(this.room);
-        }
+          this.room = resp.body.data;
       });
   }
 }

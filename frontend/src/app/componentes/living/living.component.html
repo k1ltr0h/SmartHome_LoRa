@@ -1,52 +1,58 @@
 <div class="container">
-  <div class="card">
-    <h4>Living components status</h4>
-    <br>
-  </div>
-  <div class="row">
-    <li class="btn" [routerLinkActive]="['active']"><a [routerLink]="['/rooms']">Back to Home Map</a></li>
+  <div class="col-md-10 col-md-offset-1">
+    <div class="card">
+      <h4 class="center">Living room components status</h4>
+    </div>
   </div>
 </div>
 
 <div class="container">
   <div class="row">
-    <div class="col s15">
+    <div class="col-md-5">
       <div class="card">
+        <h5 class="center">Lights in the room</h5>
         <table class="striped highlight black-text">
           <thead>
-            <th>Id</th>
-            <th>Status</th>
-            <th>Name</th>
-            <th>Room</th>
+            <th class="center">Id</th>
+            <th class="center">Status</th>
+            <th class="center">Light</th>
+            <th class="center">Room Name</th>
           </thead>
           <tbody>
             <tr *ngFor="let _light of light">
-              <td>{{ _light.id}}</td>
-              <td>{{ _light.state}}</td>
-              <td>{{ _light.name}}</td>
-              <td>{{ _light.room_name}}</td>
+              <td class="center">{{ _light.id}}</td>
+              <td class="center">{{ _light.state}}</td>
+              <td class="center">{{ _light.name}}</td>
+              <td class="center">{{ _light.room_name}}</td>
             </tr>
           </tbody>
         </table>
       </div>
+    </div>
+    <div class="col-md-7">
       <div class="card">
-        <table class="striped highlight black-text">
+        <h5 class="center">Room information</h5>
+        <table>
           <thead>
-            <th>Id</th>
-            <th>Name</th>
-            <th>Temperature</th>
-            <th>Humidity</th>
+            <th class="center">Id</th>
+            <th class="center">Room Name</th>
+            <th class="center">Temperature</th>
+            <th class="center">Humidity</th>
           </thead>
           <tbody>
-            <tr *ngFor="let _room of room">
-              <td>{{ _room.id}}</td>
-              <td>{{ _room.name}}</td>
-              <td>{{ _room.temp}}</td>
-              <td>{{ _room.hum}}</td>
-            </tr>
+            <td class="center">{{ room.id}}</td>
+            <td class="center">{{ room.name}}</td>
+            <td class="center">{{ room.temp}}</td>
+            <td class="center">{{ room.humd}}</td>
           </tbody>
         </table>
       </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-md-8 col-md-offset-4">
+      <li class="btn" [routerLinkActive]="['active']"><a [routerLink]="['/rooms']">Back to Home Map</a></li>
     </div>
   </div>
 </div>
