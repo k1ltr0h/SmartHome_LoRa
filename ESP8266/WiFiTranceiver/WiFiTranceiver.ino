@@ -11,6 +11,8 @@
 #define DHTPIN 0
 #define DHTTYPE DHT11
 
+#define RELAYPIN 2
+
 DHT dht(DHTPIN, DHTTYPE);
 
 String serverName = "http://192.168.0.100:8080/data/";
@@ -20,11 +22,27 @@ String getRoomLights = "lights?room_name=";
 String getLight = "&name=";
 
 String nodeName = "Room_A";
+bool leds_states[] = {true};
 const char* ledNames[] = {"Led_A"};
-int loraNodes = 1;
+int leds = sizeof(leds_states) / sizeof(bool);
 
 unsigned long lastTime = 0;
 unsigned long timerDelay = 2000;
+
+String getValue(String data, char separator, int index){
+    int found = 0;
+    int strIndex[] = { 0, -1 };
+    int maxIndex = data.length() - 1;
+
+    for (int i = 0; i <= maxIndex && found <= index; i++) {
+        if (data.charAt(i) == separator || i == maxIndex) {
+            found++;
+            strIndex[0] = strIndex[1] + 1;
+            strIndex[1] = (i == maxIndex) ? i+1 : i;
+        }
+    }
+    return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
+}
 
 
 void setup(){
@@ -44,6 +62,8 @@ void setup(){
   Serial.println(WiFi.localIP());
 
   dht.begin();
+  pinMode(RELAYPIN, OUTPUT);
+  digitalWrite(RELAYPIN, HIGH);
 }
 
 void updateInfo(){
@@ -117,6 +137,17 @@ void getInfo(){
 
   String state = getValue(getValue(payload, ':', 4), ',', 0);
   Serial.println(state);
+  
+  for(int i=0; i<leds; i++){
+    if(state == "false"){
+      leds_states[i] = false;
+    }
+    else{
+      leds_states[i] = true;
+    }
+    digitalWrite(RELAYPIN, leds_states[i]);
+    Serial.println("Estado de luz actualizada: " + (String)state);
+  }
 }
 
 void loop(){
@@ -124,19 +155,4 @@ void loop(){
   updateInfo();
   delay(500);
   getInfo();
-}
-
-String getValue(String data, char separator, int index){
-    int found = 0;
-    int strIndex[] = { 0, -1 };
-    int maxIndex = data.length() - 1;
-
-    for (int i = 0; i <= maxIndex && found <= index; i++) {
-        if (data.charAt(i) == separator || i == maxIndex) {
-            found++;
-            strIndex[0] = strIndex[1] + 1;
-            strIndex[1] = (i == maxIndex) ? i+1 : i;
-        }
-    }
-    return found > index ? data.substring(strIndex[0], strIndex[1]) : "";
 }
